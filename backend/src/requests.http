@@ -1,0 +1,54 @@
+### Create a new user
+POST http://localhost:8000/auth/signup
+Content-Type: application/json
+
+{
+  "email": "contact@dawudesign.com",
+  "password": "azertyuiop"
+}
+
+### Login
+POST http://localhost:8000/auth/signin
+Content-Type: application/json
+
+{
+  "email": "contact@dawudesign.fr",
+  "password": "azertyuiop"
+}
+
+### signout
+POST  http://localhost:8000/auth/signout
+Content-Type: application/json
+
+
+
+### Profile User
+GET http://localhost:8000/auth/profile
+Content-Type: application/json
+
+
+### Find a user by id 
+GET http://localhost:8000/auth/1
+Content-Type: application/json
+
+### Find a user by email
+GET http://localhost:8000/auth/all/contact@dawudesign.fr
+Content-Type: application/json
+
+### FindAll users
+
+GET  http://localhost:8000/auth
+Content-Type: application/json
+
+
+### Update a user
+PATCH http://localhost:8000/auth/1
+Content-Type: application/json
+
+{
+  "email": "contact@dawudesign.com"
+}
+
+### Delete a user
+DELETE http://localhost:8000/auth/2
+Content-Type: application/json
