@@ -16,7 +16,7 @@ export class AuthService {
 
   async signup(email: string, password: string) {
     const user = await this.usersService.findByEmail(email);
-    if (user.length === 1) {
+    if (user && user.length > 0) {
       throw new BadRequestException('Email already in use');
     }
     // Generate a salt

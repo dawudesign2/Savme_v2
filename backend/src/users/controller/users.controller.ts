@@ -9,11 +9,15 @@ import {
   UseInterceptors,
   ClassSerializerInterceptor,
   Session,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateUserDto } from '../dto/createUser.dto';
 import { UpdateUserDto } from '../dto/updateUser.dto';
 import { UsersService } from './../service/users.service';
 import { AuthService } from '../service/auth.service';
+import { CurrentUser } from '../decorator/currentUser.decorator';
+import { User } from '../entity/users.entity';
+import { AuthGuard } from '../guard/auth.guard';
 
 @Controller('auth')
 export class UsersController {
@@ -22,11 +26,11 @@ export class UsersController {
     private authService: AuthService,
   ) {}
 
+  @UseGuards(AuthGuard)
   @UseInterceptors(ClassSerializerInterceptor)
   @Get('/profile')
-  profile(@Session() session: any) {
-    const { userId } = session;
-    return this.usersService.findById(parseInt(userId, 10));
+  profile(@CurrentUser() user: User) {
+    return user;
   }
 
   @UseInterceptors(ClassSerializerInterceptor)
